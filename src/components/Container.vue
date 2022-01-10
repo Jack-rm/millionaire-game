@@ -37,13 +37,7 @@ export default {
     }
   },
   methods:{
-        // startQuizFunc(){
-        //     this.startQuiz = true
-        //     this.countDownTimer()
-        // },
-
         updateQuestion(isCorrect){
-            // clearTimeout(this.timer);
             let nextQuestion = this.currentQuestion + 1;
             if(isCorrect){
                 this.score = this.score + 1;
@@ -52,28 +46,12 @@ export default {
             if(nextQuestion < this.quiz.length && isCorrect){
             this.currentQuestion = nextQuestion;
             console.log("question n. " + this.currentQuestion);
-            // this.$store.state.questionAttended = this.currentQuestion;
-            // localStorage.setItem('qattended', this.currentQuestion)
-            // this.countDown = 30;
-            // this.countDownTimer();
             }
             else{
-                // localStorage.removeItem('qattended')
-                // this.showScore = true;
-                // localStorage.setItem('testComplete',this.showScore)
+              alert("YOU LOSE!");
+              this.currentQuestion = 0;
             }
         },
-        // countDownTimer() {
-        //         if(this.countDown > 0) {
-        //             this.timer = setTimeout(() => {
-        //                 this.countDown -= 1
-        //                 this.countDownTimer()
-        //             }, 1000)
-        //         }
-        //         else{
-        //             this.handleAnswerClick(false)
-        //         }
-        //     }
     },
 };
 </script>
