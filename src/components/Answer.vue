@@ -19,42 +19,11 @@ export default {
     }
   },
   methods:{
-        // startQuizFunc(){
-        //     this.startQuiz = true
-        //     this.countDownTimer()
-        // },
+    handleAnswerClick(isCorrect){
+      this.$emit('update-question', isCorrect);
+    }
+  }
 
-        handleAnswerClick(isCorrect){
-            // clearTimeout(this.timer);
-            let nextQuestion = this.currentQuestion + 1;
-            if(isCorrect){
-                this.score = this.score + 1;
-            }
-            if(nextQuestion < this.quiz.length){
-            this.currentQuestion = nextQuestion;
-            // this.$store.state.questionAttended = this.currentQuestion;
-            // localStorage.setItem('qattended', this.currentQuestion)
-            // this.countDown = 30;
-            // this.countDownTimer();
-            }
-            else{
-                // localStorage.removeItem('qattended')
-                // this.showScore = true;
-                // localStorage.setItem('testComplete',this.showScore)
-            }
-        },
-        // countDownTimer() {
-        //         if(this.countDown > 0) {
-        //             this.timer = setTimeout(() => {
-        //                 this.countDown -= 1
-        //                 this.countDownTimer()
-        //             }, 1000)
-        //         }
-        //         else{
-        //             this.handleAnswerClick(false)
-        //         }
-        //     }
-    },
 };
 </script>
 

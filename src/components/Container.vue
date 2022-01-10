@@ -6,7 +6,7 @@
         <Questions :currentQuestion="currentQuestion"/>
       </div>
       <div class="row">
-        <Answer v-for="(option,index) in quiz[currentQuestion].answerOptions" :key="index" :index="index" :currentQuestion="currentQuestion"/>
+        <Answer :key="index" v-for="(option, index) in quiz[currentQuestion].answerOptions" :index="index" :currentQuestion="currentQuestion" @update-question="updateQuestion(option.isCorrect)"/>
       </div>
         <!-- <div v-for="(question, index) in questions" :key="index" class="col-12">
           <h2>{{ question.question }}</h2>
@@ -32,9 +32,49 @@ export default {
   data: function(){
     return{
       currentQuestion:0,
+      score:0,
       quiz,
     }
-  }
+  },
+  methods:{
+        // startQuizFunc(){
+        //     this.startQuiz = true
+        //     this.countDownTimer()
+        // },
+
+        updateQuestion(isCorrect){
+            // clearTimeout(this.timer);
+            let nextQuestion = this.currentQuestion + 1;
+            if(isCorrect){
+                this.score = this.score + 1;
+                console.log("score:"+this.score);
+            }
+            if(nextQuestion < this.quiz.length && isCorrect){
+            this.currentQuestion = nextQuestion;
+            console.log("question n. " + this.currentQuestion);
+            // this.$store.state.questionAttended = this.currentQuestion;
+            // localStorage.setItem('qattended', this.currentQuestion)
+            // this.countDown = 30;
+            // this.countDownTimer();
+            }
+            else{
+                // localStorage.removeItem('qattended')
+                // this.showScore = true;
+                // localStorage.setItem('testComplete',this.showScore)
+            }
+        },
+        // countDownTimer() {
+        //         if(this.countDown > 0) {
+        //             this.timer = setTimeout(() => {
+        //                 this.countDown -= 1
+        //                 this.countDownTimer()
+        //             }, 1000)
+        //         }
+        //         else{
+        //             this.handleAnswerClick(false)
+        //         }
+        //     }
+    },
 };
 </script>
 
